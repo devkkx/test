@@ -38,3 +38,5 @@ class IsPrime{
         IsPrime.scanner = scanner;
     }
 }
+
+/** comment */
