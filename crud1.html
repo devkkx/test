@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .card{
+            margin: 10px;
+            background-color: maroon;
+            width: 250px;
+            color: white;
+            padding: 15px;
+            display: inline-block;
+        }
+        .name{
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .price{
+            font-size: 26px;
+            color: gold;
+
+        }
+        .price::before{
+            content: "₹";
+            font-size: px;
+        }
+        .details{
+            font-size: 18px;
+            margin-top: 10px;
+            font-family: calibri;
+        }
+        .action{
+            margin-top: 10px;
+            text-align: center;
+        }
+        .action button{
+            padding: 10px 20px;
+            background-color: gold;
+            color: maroon;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form">
+        <input type="text" id="name" placeholder="Enter Product Name">
+        <input type="number" id="price" placeholder="Enter Product Price">
+        <textarea id="details" placeholder="Enter Product Details"></textarea>
+        <button onclick="addProduct()">Add Product</button>
+    </div>
+    <div id="parent"></div>
+    <script>
+       
+
+        let parentObj = document.getElementById("parent");
+        let nameObj = document.getElementById("name");
+        let priceObj = document.getElementById("price");
+        let detailsObj = document.getElementById("details");
+        const product = [
+            {
+                name:"Chair",
+                price:3200,
+                details:"comfy chair created with productivity in Mind"
+            },
+            {
+                name:"Mobile",
+                price:10000,
+                details:"Mini beast for best gaming experience"
+            },
+            {
+                name:"Smart TV",
+                price:100000,
+                details:"XHD display with 4k resolution"
+            },
+        ]
+        // for (let i = 0; i < product.length; i++) {
+        //     parentObj.innerHTML+=`<div class='card'>
+        //         <div class='name'>${product[i].name}</div>
+        //         <div class='price'>${product[i].price}</div>
+        //         <div class='details'>${product[i].details}</div>
+        //         <div class='action'>
+        //             <button onclick='deleteproduct(${i})'>Delete</button>
+        //             </div>
+        //         </div>`
+        // }
+        function renderProduct(){
+            parentObj.innerHTML = ""; // Clear previous content
+            for (let i = 0; i < product.length; i++) {
+            parentObj.innerHTML+=`<div class='card'>
+                <div class='name'>${product[i].name}</div>
+                <div class='price'>${product[i].price}</div>
+                <div class='details'>${product[i].details}</div>
+                <div class='action'>
+                    <button onclick='deleteproduct(${i})'>Delete</button>
+                    </div>
+                </div>`
+        }
+    }
+    renderProduct()
+
+        function deleteproduct(index){
+            alert(product[index].name);
+        opt=confirm(`Are you sure you want to delete '${product[index].name}'`)
+        if(opt){
+            product.splice(index,1);
+        console.log(product);
+     parentObj.innerHTML="";
+        renderProduct();
+    }
+}
+function addProduct(){
+    newProduct={
+        name:nameObj.value,
+        price:priceObj.value,
+        details:detailsObj.value
+    }
+    product.push(newProduct);
+    console.log("PDT=",product)
+    renderProduct();
+}
+
+    </script>
+</body>
+</html>
